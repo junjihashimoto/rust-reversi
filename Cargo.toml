@@ -1,0 +1,11 @@
+[package]
+name = "reversi"
+version = "0.1.0"
+authors = ["Junji Hashimoto <junji.hashimoto@gmail.com>"]
+
+[dependencies]
+text_io = "*"
+
+[[bin]]
+name = "reversi"
+path = "reversi.rs"
