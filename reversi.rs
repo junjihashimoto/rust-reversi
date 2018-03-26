@@ -195,48 +195,6 @@ fn main_(disk: &Disk,board: &Board){
     }
 }
 
-/*
-
-main' disk board=do
-  let nd=ndisk disk
-  let p' =next board disk
-  let p''=next board nd
-  putStr $ showBoard board
-  if p'==[] && p''==[] 
-    then do
-    if value board Black > value board White
-      then print "black win"
-      else if value board Black < value board White
-        then print "white win"
-        else print "draw"
-    else do
-    b <- case  p' of
-      [] -> return board
-      _  -> do
-        v <- getLine
-        let p=read v :: Pos
-        if (filter (==p) p')==[] 
-          then main' disk board
-          else return ()
---        let (Just p)=maxmin board disk
-        let b=put board disk p
-        return b
-    putStr $ showBoard b
-    let p'=maxmin b nd 
-    let b'=case p' of 
-          Just v -> put b nd v
-          _      -> b
-    main' disk b'
-
-initboard=M.insert (3,4) Black $
-          M.insert (4,3) Black $
-          M.insert (4,4) White $
-          M.insert (3,3) White M.empty
-
-main=do
-  main' Black initboard
-
-*/
 fn main() {
     let mut initboard: Board = Board::new();
     initboard.insert((3,4),Disk::Black);
