@@ -23,8 +23,7 @@ impl fmt::Display for Disk {
     }
 }
 
-
-fn showDisk (d: &Option<&Disk>) -> &'static str {
+fn show_disk (d: &Option<&Disk>) -> &'static str {
     match d {
         &Option::None => " ",
         &Option::Some(&Disk::White) => "o",
@@ -32,17 +31,17 @@ fn showDisk (d: &Option<&Disk>) -> &'static str {
     }
 }
 
-fn showDiskOnBoard (p: &Pos, board: &Board) -> &'static str {
-    showDisk(&board.get(&p))
+fn show_disk_on_board (p: &Pos, board: &Board) -> &'static str {
+    show_disk(&board.get(&p))
 }
 
-fn showBoard (board: &Board) -> String {
+fn show_board (board: &Board) -> String {
     let mut init = " 01234567\n".to_string();
     for y in 0..7{
         init = init + "|";
         for x in 0..7{
             let p = (x,y);
-            init = init + showDiskOnBoard (&p,board);
+            init = init + show_disk_on_board (&p,board);
         }
         init = init + "|" + &(y.to_string()) + "\n";
     }
@@ -164,7 +163,7 @@ fn main_(disk: &Disk,board: &Board){
     let nd = ndisk(disk);
     let p_ = next(board,disk);
     let p__= next(board,&nd);
-    print!("{}",showBoard(board));
+    print!("{}",show_board(board));
     if p_.len() == 0  && p__.len() == 0 {
         if value(board,&Disk::Black) > value(board,&Disk::White) {
             println!("black win")
@@ -185,7 +184,7 @@ fn main_(disk: &Disk,board: &Board){
             }
             put(board,disk,&p)
         };
-        print!("{}",showBoard(&b));
+        print!("{}",show_board(&b));
         let p_= maxmin(&b,&nd);
         let b_= match p_ {
             Option::None => b,
